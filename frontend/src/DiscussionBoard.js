@@ -20,12 +20,12 @@ import { Card, Button, Col} from 'react-bootstrap';
       },
     })
     .then(res => res.json())
-    // .then(posts => {
-    //   this.setState({
-    //     posts: posts
-    //   })
-    // })
-    .then(console.log)
+    .then(posts => {
+      this.setState({
+        posts: posts
+      })
+    })
+    // .then(console.log)
 
   }
   
@@ -42,12 +42,13 @@ import { Card, Button, Col} from 'react-bootstrap';
       console.log("I've been clicked")
         let content = e.target[1].value
         let image = e.target[0].value
-        let user_id = 12
+        let user_id = this.props.userId
         //will eventually pass prop of state of user_id
         // do i need to worry about user_id?
         fetch("http://localhost:3001/posts",{
             method: "POST",
             headers: {
+              Authorization: `Bearer ${localStorage.token}`,
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },

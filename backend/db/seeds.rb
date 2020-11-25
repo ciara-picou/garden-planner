@@ -10,7 +10,7 @@ User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 
-u1= User.create(username:"pikusaurus", password_digest:"secret")
+u1= User.create(username:"pikusaurus", password:"secret")
 pl1= Plant.create(
     name: "Geranium",
     pimage:"https://hgtvhome.sndimg.com/content/dam/images/hgtv/stock/2018/2/9/shutterstock_423414625-Maya-Afzaal_geraniums.jpg.rend.hgtvcom.616.411.suffix/1518196004257.jpeg",
@@ -38,7 +38,7 @@ pl2= Plant.create(
     user_id: u1.id,
     )
 
-u2= User.create(username:"treehugger84", password_digest:"secret")
+u2= User.create(username:"treehugger84", password:"secret")
 p2= Post.create(content:"What are these spots on my calathea?", user_id: u1.id, image: "https://i.redd.it/2g59xixu8eu41.jpg")
 c2 = Comment.create(content:"Looks like fungus", username: "plant_lady_420", post_id: p2.id)
 c3 = Comment.create(content:"Have you tried watering it?", username: "plant_lady_420", post_id: p1.id)

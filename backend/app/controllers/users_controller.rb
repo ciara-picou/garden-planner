@@ -4,6 +4,12 @@ class UsersController < ApplicationController
         users= User.all
         render json: users, include: [ :plants, { posts: { include:  :comments }  } ]
     end
+
+    def show
+        user= User.find(params[:id])
+        render json: user, include: [ :plants, { posts: { include:  :comments }  } ]
+    end
+
     def create
         user = User.new(user_params)
       

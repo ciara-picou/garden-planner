@@ -7,7 +7,7 @@ skip_before_action :logged_in?
         user = User.find_by(username: params[:username])
 
         if user && user.authenticate(params[:password]) # we can use the .authenticate method to check password thanks to the bcrypt gem
-            render json: {username: user.username, token: encode_token({user_id: user.id})}
+            render json: {user: user, token: encode_token({user_id: user.id})}
         else
             render json: {error: "invalid username or password"}
         end

@@ -30,6 +30,7 @@ class SickBack extends Component {
     fetch("http://localhost:3001/comments", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${localStorage.token}`,
         "Content-Type": "application/json",
         "Accept": "application/json",
       },

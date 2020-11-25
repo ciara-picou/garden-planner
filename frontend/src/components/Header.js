@@ -1,9 +1,13 @@
 import React from 'react'
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, Button} from 'react-bootstrap';
 
 
 
-const Header = () => {
+const Header = (props) => {
+
+  const handleClick=()=>{
+    props.handleLogout()
+  }
     return(
         <header>
             <Navbar bg="light" expand="lg">
@@ -15,6 +19,7 @@ const Header = () => {
       <Nav.Link href="#link">Link</Nav.Link>
     </Nav> */}
   </Navbar.Collapse>
+  {props.loggedIn ? <Button onClick={handleClick}variant="primary">Logout</Button> : null}
 </Navbar>
     {/* <Router>
       <Switch>

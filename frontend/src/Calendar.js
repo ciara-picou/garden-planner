@@ -11,15 +11,16 @@ function Calendar() {
       }
   
     const createEvent = (e) => {
+      // console.log(e.target[0].value)
+      // console.log(e.target[1].value)
+      
       var gapi = window.gapi
       let theEvent = {
-             'summary': 'Repot Poinsettia',
-            
-
+          'summary': 'Repot Poinsettia',
             // 'summary': e.target[0].value,
   
           'start': {
-              'date': '2020-12-05'
+               'date': '2020-12-05'
               // 'date': e.target[1].value
                  },
            'end': {
@@ -27,13 +28,29 @@ function Calendar() {
               // 'date': e.target[1].value
                 },
       }
-      // let calendarId = "primary"
-      //  //ApiCalendar.createEvent(event: object, calendarId: string = this.calendar)
-      //  ApiCalendar.createEvent( theEvent, calendarId)
+      let calendarId = "primary"
+       //ApiCalendar.createEvent(event: object, calendarId: string = this.calendar)
+       ApiCalendar.createEvent( theEvent, calendarId)
          var request = gapi.client.calendar.events.insert({
                  'calendarId': 'primary',
                  'resource': theEvent,
               });
+
+          // var request = gapi.client.calendar.events.insert({
+          //        'calendarId': 'primary',
+          //        'resource': {
+          //             //'summary': 'Repot Poinsettia',
+          //                'summary': e.target[0].value,
+              
+          //             'start': {
+          //                  //'date': '2020-12-05'
+          //                 'date': e.target[1].value
+          //                    },
+          //              'end': {
+          //                  //'date': '2020-12-05'
+          //                  'date': e.target[1].value
+          //                   }}
+          //     });
               
                request.execute(event => {
                  window.open(event.htmlLink)
@@ -57,10 +74,10 @@ function Calendar() {
              <Form onSubmit={(e)=>createEvent(e)}>
              <Form.Row>
             <Col xs="auto" >
-            <Form.Control placeholder="Plant Care Event Name" />
+            <Form.Control onChange={null} placeholder="Plant Care Event Name" />
             </Col>
             <Col xs="auto" >
-            <Form.Control type="date" placeholder="yyyy/mm/dd" />
+            <Form.Control onChange={null} type="date" placeholder="yyyy/mm/dd" />
               </Col >
              </Form.Row>
             </Form>
@@ -68,6 +85,7 @@ function Calendar() {
             Add an Event
             </Button> */}
              <Button style={{width: 100, height: 50}} onClick={createEvent}>Add an Event</Button>
+             {/* <Button onClick={handleClick} style={{width: 100, height: 50}} type="submit">Add an Event</Button> */}
              <br></br>
              <br></br>
           </Container>

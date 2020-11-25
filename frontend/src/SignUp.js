@@ -36,7 +36,7 @@ render() {
           <label>UserName</label>
           <input onChange={(e)=> this.handleChange(e)} name="username" type="text"></input>
           <label>Password</label>
-          <input onChange={(e)=> this.handleChange(e)} name="password" type="text"></input>
+          <input onChange={(e)=> this.handleChange(e)} name="password" type="password"></input>
           <input type="submit"></input>
         </form>
         {/* <Form onSubmit={null}>

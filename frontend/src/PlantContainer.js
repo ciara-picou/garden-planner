@@ -14,32 +14,25 @@ import NewPlantForm from './NewPlantForm'
 
 
 
-  // componentDidMount = () => {
-  //   fetch('http://localhost:3001/plants')
-  //   .then(res => res.json())
-  //   .then(plants => {
-  //     this.setState({
-  //       allPlants: plants
-  //     })
-  //   })
 
-  // }
 
-    // componentDidMount = () => {
-    // fetch('http://localhost:3001/plants', {
-    //   method: "GET",
-    //   headers: {
-    //     Authorization: `Bearer ${localStorage.token}`
-    //   },
-    // })
-    // .then(res => res.json())
-    //  .then(console.log)
-  //  .then(plants => {
-  //     this.setState({
-  //       allPlants: plants
-  //     })
-  //   })
-  // }
+    componentDidMount = () => {
+    fetch(`http://localhost:3001/users/${this.props.user.id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      },
+    })
+    .then(res => res.json())
+  
+   .then(user => {
+     console.log(user)
+      this.setState({
+         allPlants: user.plants
+      })
+    }
+    )
+  }
 
   
   createPlant = () => {
@@ -63,12 +56,15 @@ import NewPlantForm from './NewPlantForm'
       let next_fertilization_date = e.target[6].value
       
                 // "user_id": get from session? below is hardcoded
-      let user_id = 12
+      //let user_id = 12
+      let user_id = this.props.user.id
       // do i need to worry about user_id? 
       //Yes when you have a login you can save logged in user to state
       fetch("http://localhost:3001/plants",{
+       
           method: "POST",
           headers: {
+            Authorization: `Bearer ${localStorage.token}`,
               "Content-Type": "application/json",
               "Accept": "application/json"
           },
@@ -99,7 +95,11 @@ import NewPlantForm from './NewPlantForm'
     let updatePlantList = this.state.allPlants.filter(plant => plant.id !== plantId)
     console.log(updatePlantList)
     fetch(`http://localhost:3001/plants/${plantId}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`
+        },
+
     })
     .then(res => this.setState({
         allPlant: updatePlantList
@@ -109,24 +109,35 @@ import NewPlantForm from './NewPlantForm'
 handleEdit = (e, updatedPlant) => {
     console.log(e)
     e.preventDefault()
-    console.log ("we're editing")
+
+
    
     let allPlants = this.state.allPlants
     let thisPlantIndex= allPlants.indexOf(updatedPlant)
     let newDate = e.target[0].value
     let updatedDate= allPlants[thisPlantIndex].next_fertilization_date = newDate
+    console.log (updatedPlant)
+    console.log(allPlants)
+    console.log(thisPlantIndex)
+    console.log(updatedDate)
     fetch(`http://localhost:3001/plants/${updatedPlant.id}`, {
         method: "PATCH",
         headers: {
+           Authorization: `Bearer ${localStorage.token}`,
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
         body: JSON.stringify({
-            next_fertilization_date: updatedDate
+            next_fertilization_date: updatedDate,
+            // user_id: this.props.userid
+            
         })
     })
     .then(res => res.json())
-    .then(editedPlant => console.log(editedPlant))
+    // .then(editedPlant => console.log(editedPlant))
+    .then(this.setState({
+      allPlants: allPlants
+    }))
     e.target.reset()
 }
 
