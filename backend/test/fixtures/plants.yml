@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  pimage: MyString
+  water: MyString
+  light: MyString
+  fertilization: MyString
+  next_fertilization_date: MyString
+  cold_tolerance: MyString
+  user_id: 1
+
+two:
+  name: MyString
+  pimage: MyString
+  water: MyString
+  light: MyString
+  fertilization: MyString
+  next_fertilization_date: MyString
+  cold_tolerance: MyString
+  user_id: 1
