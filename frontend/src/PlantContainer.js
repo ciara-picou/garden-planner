@@ -8,25 +8,40 @@ import NewPlantForm from './NewPlantForm'
   class PlantContainer extends Component {
 
   state = {
-    allPlants: [],
+     allPlants:[],
     display: false
   }
 
-// may need to make it http://localhost:3001/plants
-// because of google api specified domain
 
-  componentDidMount = () => {
-    fetch('http://localhost:3000/plants')
-    .then(res => res.json())
-    .then(plants => {
-      this.setState({
-        allPlants: plants
-      })
-    })
 
-  }
+  // componentDidMount = () => {
+  //   fetch('http://localhost:3001/plants')
+  //   .then(res => res.json())
+  //   .then(plants => {
+  //     this.setState({
+  //       allPlants: plants
+  //     })
+  //   })
 
- 
+  // }
+
+    // componentDidMount = () => {
+    // fetch('http://localhost:3001/plants', {
+    //   method: "GET",
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.token}`
+    //   },
+    // })
+    // .then(res => res.json())
+    //  .then(console.log)
+  //  .then(plants => {
+  //     this.setState({
+  //       allPlants: plants
+  //     })
+  //   })
+  // }
+
+  
   createPlant = () => {
     console.log("A plant is born!")
     let newBoolean = !this.state.display
@@ -51,7 +66,7 @@ import NewPlantForm from './NewPlantForm'
       let user_id = 12
       // do i need to worry about user_id? 
       //Yes when you have a login you can save logged in user to state
-      fetch("http://localhost:3000/plants",{
+      fetch("http://localhost:3001/plants",{
           method: "POST",
           headers: {
               "Content-Type": "application/json",
@@ -83,7 +98,7 @@ import NewPlantForm from './NewPlantForm'
   handleDelete = (plantId) => {
     let updatePlantList = this.state.allPlants.filter(plant => plant.id !== plantId)
     console.log(updatePlantList)
-    fetch(`http://localhost:3000/plants/${plantId}`, {
+    fetch(`http://localhost:3001/plants/${plantId}`, {
         method: "DELETE"
     })
     .then(res => this.setState({
@@ -100,7 +115,7 @@ handleEdit = (e, updatedPlant) => {
     let thisPlantIndex= allPlants.indexOf(updatedPlant)
     let newDate = e.target[0].value
     let updatedDate= allPlants[thisPlantIndex].next_fertilization_date = newDate
-    fetch(`http://localhost:3000/plants/${updatedPlant.id}`, {
+    fetch(`http://localhost:3001/plants/${updatedPlant.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
@@ -111,11 +126,7 @@ handleEdit = (e, updatedPlant) => {
         })
     })
     .then(res => res.json())
-    .then(this.setState({
-        allPlants: allPlants
-    })
-    )
-    // .then(editedPlant => console.log(editedPlant))
+    .then(editedPlant => console.log(editedPlant))
     e.target.reset()
 }
 

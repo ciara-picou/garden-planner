@@ -27,7 +27,7 @@ class SickBack extends Component {
     console.log(content)
     console.log(username)
     console.log(postId)
-    fetch("http://localhost:3000/comments", {
+    fetch("http://localhost:3001/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -13,13 +13,19 @@ import { Card, Button, Col} from 'react-bootstrap';
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/posts')
-    .then(res => res.json())
-    .then(posts => {
-      this.setState({
-        posts: posts
-      })
+    fetch('http://localhost:3001/posts', {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      },
     })
+    .then(res => res.json())
+    // .then(posts => {
+    //   this.setState({
+    //     posts: posts
+    //   })
+    // })
+    .then(console.log)
 
   }
   
@@ -39,7 +45,7 @@ import { Card, Button, Col} from 'react-bootstrap';
         let user_id = 12
         //will eventually pass prop of state of user_id
         // do i need to worry about user_id?
-        fetch("http://localhost:3000/posts",{
+        fetch("http://localhost:3001/posts",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

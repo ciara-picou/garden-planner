@@ -2,7 +2,7 @@ import React from 'react';
 import ApiCalendar from 'react-google-calendar-api';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import {Container, Button} from 'react-bootstrap';
+import {Container, Button, Form, Col} from 'react-bootstrap';
 
 function Calendar() {
   
@@ -10,16 +10,21 @@ function Calendar() {
         ApiCalendar.handleAuthClick()
       }
   
-    const createEvent = () => {
+    const createEvent = (e) => {
       var gapi = window.gapi
       let theEvent = {
-          'summary': 'Water Marigolds',
+             'summary': 'Repot Poinsettia',
+            
+
+            // 'summary': e.target[0].value,
   
           'start': {
-            'date': '2020-11-22'
+              'date': '2020-12-05'
+              // 'date': e.target[1].value
                  },
            'end': {
-              'date': '2020-11-22'
+               'date': '2020-12-05'
+              // 'date': e.target[1].value
                 },
       }
       // let calendarId = "primary"
@@ -40,7 +45,8 @@ function Calendar() {
   
       <>
            <Container>
-            <h1>Add plant care reminders to your Google Calendar!</h1>
+            <h1>Add plant care reminders to</h1>
+             <h1>your Google Calendar!</h1>
             <br></br>
             <br></br>
             <h4>First:</h4>
@@ -48,6 +54,19 @@ function Calendar() {
              <br></br>
              <br></br>
              <h4>Then:</h4>
+             <Form onSubmit={(e)=>createEvent(e)}>
+             <Form.Row>
+            <Col xs="auto" >
+            <Form.Control placeholder="Plant Care Event Name" />
+            </Col>
+            <Col xs="auto" >
+            <Form.Control type="date" placeholder="yyyy/mm/dd" />
+              </Col >
+             </Form.Row>
+            </Form>
+            {/* <Button variant="primary" type="submit">
+            Add an Event
+            </Button> */}
              <Button style={{width: 100, height: 50}} onClick={createEvent}>Add an Event</Button>
              <br></br>
              <br></br>

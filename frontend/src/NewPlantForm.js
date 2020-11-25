@@ -15,7 +15,6 @@ import {Form, Card, Button, Col} from 'react-bootstrap';
 <Form.Row className="align-items-center">
   <Col xs="auto">
     <Form.Group controlId="new-plant-form">
-          <Form.Label className="text-white">Add a New Plant to My Garden</Form.Label>
           <Form.Control size="lg"  placeholder="New Plant Species" />
       </Form.Group>
       <Form.Group controlId="new-plant-form">
@@ -37,14 +36,18 @@ import {Form, Card, Button, Col} from 'react-bootstrap';
           <Form.Control size="lg"  placeholder="Fertilization Requirements" />
       </Form.Group>
       <Form.Group controlId="new-plant-form">
-          <Form.Control size="lg"  placeholder="Next Fertilization Date" />
+      {/* <Form.Label>Next Fertilization Date:</Form.Label> */}
+          <Form.Control size="lg" type="date" placeholder="Next Fertilization Date" />
+          <Form.Text  className="text-white">
+          Next Fertilization Date
+          </Form.Text>
       </Form.Group>
-<Button variant="primary" type="submit">
-   Submit
-</Button>
-</Col>
-</Form.Row>
-</Form>
+    <Button variant="primary" type="submit">
+    Submit
+    </Button>
+    </Col>
+    </Form.Row>
+    </Form>
     )}}
 
 export default NewPlantForm

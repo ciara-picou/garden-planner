@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
-
+    skip_before_action :logged_in?, only: [:create]
     def index
         users= User.all
         render json: users, include: [ :plants, { posts: { include:  :comments }  } ]
     end
     def create
-        user = User.create(user_params)
-        #render json: user, include: :plants :posts
-        render json: user, include: [ :plants, { posts: { include:  :comments }  } ]
-        #super(include: { albums: { include:  :songs } })
-        # if user.valid?
-        #     user.save
-        #     render json: user, status: :created
+        user = User.new(user_params)
+      
+        # render json: user, include: [ :plants, { posts: { include:  :comments }  } ]
+       
+        if user.valid?
+            user.save
+            render json: user, include: [ :plants, { posts: { include:  :comments }  } ],status: :created
         
-        # else
-        #     render json: {error: "Failed to create a user"}, status: :not_acceptable
-        # end
+        else
+            render json: {error: "Failed to create a user"}, status: :not_acceptable
+        end
     end
 
     def destroy
@@ -25,16 +25,25 @@ class UsersController < ApplicationController
     
     private
 
-    def user_params
-        params.require.(:user).permit(
+    # def user_params
+    #     params.require.(:user).permit(
+    #         :username,
+    #         :password,
+    #         posts_attributes: [ 
+    #         :content, 
+    #         :user_id,
+    #         :image
+    #     ])
+    # end   
+
+     def user_params
+        params.permit(
             :username,
-            :password,
-            posts_attributes: [ 
-            :content, 
-            :user_id,
-            :image
-        ])
+            :password
+        )
     end   
+
+
 
  # def recipe_params
     #     params.require(:recipe).permit(

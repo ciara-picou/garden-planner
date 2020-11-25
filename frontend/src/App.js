@@ -6,6 +6,8 @@ import PlantContainer from './PlantContainer'
 import DiscussionBoard from './DiscussionBoard'
 import SickBack from './SickBack'
 import Calendar from './Calendar'
+import  Login from './Login'
+import  SignUp from './SignUp'
 
 function App() {
 
@@ -19,9 +21,18 @@ function App() {
       
          <Container>
            <h1>Garden Planner</h1>
+           {localStorage.token? 
+           <div>
+           <SignUp/>
+           <Login/>
            <PlantContainer/>
            <Calendar/>
            <DiscussionBoard/>
+           </div>
+          : <div>
+            <SignUp/>
+           <Login/>
+            </div>}
         </Container>
      
      </main>
