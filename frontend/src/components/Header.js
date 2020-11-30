@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, Nav, Button} from 'react-bootstrap';
+import {Navbar, Nav, Button, Jumbotron, Container} from 'react-bootstrap';
 
 
 
@@ -10,8 +10,9 @@ const Header = (props) => {
   }
     return(
         <header>
-            <Navbar bg="light" expand="lg">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            {/* <Navbar bg="light" expand="lg"> */}
+            <Navbar bg="primary"className="navbar" expand="lg">
+  <Navbar.Brand className=".text-white" href="#home">Garden Planner</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     {/* <Nav className="mr-auto">
@@ -19,8 +20,13 @@ const Header = (props) => {
       <Nav.Link href="#link">Link</Nav.Link>
     </Nav> */}
   </Navbar.Collapse>
-  {props.loggedIn ? <Button onClick={handleClick}variant="primary">Logout</Button> : null}
+  {props.loggedIn ? <Button onClick={handleClick}variant="secondary">Logout</Button> : null}
 </Navbar>
+{/* <Jumbotron fluid>
+  <Container>
+    <h1 className="text-white">Garden Planner</h1>
+  </Container>
+</Jumbotron> */}
     {/* <Router>
       <Switch>
         <Route path="/login" component={Login} />

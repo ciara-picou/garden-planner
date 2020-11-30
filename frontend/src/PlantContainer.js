@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import PlantCard from './PlantCard'
@@ -145,6 +146,7 @@ handleEdit = (e, updatedPlant) => {
   render() {
     return (
       <div>
+        <h2>My Garden:</h2>
           {this.state.allPlants.map(plant => {
             return <PlantCard key={plant.id} plant={plant} handleDelete={this.handleDelete} handleEdit={this.handleEdit} />   
           })}

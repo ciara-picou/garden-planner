@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {Form, Card, Button, Col} from 'react-bootstrap';
 class SignUp extends Component {
 
+    state={
+        loggedIn:false,
+        user:{}
+    }
+
     handleChange = (e) => {
         //console.log(e.target.value)
         this.setState({
@@ -24,7 +29,18 @@ class SignUp extends Component {
             })
         })
         .then(res => res.json())
-        .then(console.log)
+        
+        //code below is experimental we get the token &
+        //things work well enough when we replace it with // .then(console.log)
+        .then((userInfo) => {
+            localStorage.setItem("token", userInfo.token);
+            this.setState({
+              loggedIn: !this.state.loggedIn,
+              user: userInfo.user,
+            });
+          });
+
+        e.target.reset()
     }
 
 render() {
