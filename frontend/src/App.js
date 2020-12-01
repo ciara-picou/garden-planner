@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Container, Jumbotron } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import PlantContainer from "./PlantContainer";
 import DiscussionBoard from "./DiscussionBoard";
 import SickBack from "./SickBack";
@@ -55,15 +55,6 @@ class App extends React.Component {
       }),
     })
       .then((res) => res.json())
-      // .then(console.log)
-      //conditional to return an error if userInfo.error render error message else do this stuff
-      // .then((userInfo) => {
-      //   localStorage.setItem("token", userInfo.token);
-      //   this.setState({
-      //     loggedIn: !this.state.loggedIn,
-      //     user: userInfo.user,
-      //   });
-      // });
       .then((userInfo) => {
         if (userInfo.error) {
           this.setState({

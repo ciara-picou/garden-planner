@@ -32,7 +32,7 @@ import {Card, ListGroup, Button, Form} from 'react-bootstrap';
 }
 
 
-
+//sample plant object:
 // "id": 1,
 // "name": "Geranium",
 // "pimage": ""

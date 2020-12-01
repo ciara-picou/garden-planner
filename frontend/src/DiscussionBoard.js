@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import SickPlantForm from './SickPlantForm.js';
 import SickPlantCard from './SickPlantCard.js';
-import { Card, Button, Col} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
-//  export class PlantContainer extends Component {
+
   class DiscussionBoard extends Component {
 
   state={
@@ -25,7 +25,7 @@ import { Card, Button, Col} from 'react-bootstrap';
         posts: posts
       })
     })
-    // .then(console.log)
+    
 
   }
   
@@ -43,8 +43,7 @@ import { Card, Button, Col} from 'react-bootstrap';
         let content = e.target[1].value
         let image = e.target[0].value
         let user_id = this.props.userId
-        //will eventually pass prop of state of user_id
-        // do i need to worry about user_id?
+
         fetch("http://localhost:3001/posts",{
             method: "POST",
             headers: {
@@ -63,7 +62,6 @@ import { Card, Button, Col} from 'react-bootstrap';
         .then(newPost => this.setState({
             posts: [...this.state.posts, newPost]
         }))
-        //  .then(newPost => console.log(newPost))
         e.target.reset()
   }
   
