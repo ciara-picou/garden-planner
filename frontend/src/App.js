@@ -15,23 +15,24 @@ class App extends React.Component {
     password: "",
     loggedIn: false,
     user: {},
+    error: {},
   };
 
-  componentDidMount(){
-    if(localStorage.token){
+  componentDidMount() {
+    if (localStorage.token) {
       fetch("http://localhost:3001/user", {
-      headers: {
-        "Authorization": `Bearer ${localStorage.token}`,
-      },
-    })
-    .then(res => res.json())
-    .then(userInfo => {
-      console.log(userInfo)
-      this.setState({
-        loggedIn: !this.state.loggedIn,
-        user: userInfo,
-      });
-    })
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((userInfo) => {
+          console.log(userInfo);
+          this.setState({
+            loggedIn: !this.state.loggedIn,
+            user: userInfo,
+          });
+        });
     }
   }
 
@@ -54,14 +55,28 @@ class App extends React.Component {
       }),
     })
       .then((res) => res.json())
-      //    .then(console.log)
+      // .then(console.log)
       //conditional to return an error if userInfo.error render error message else do this stuff
+      // .then((userInfo) => {
+      //   localStorage.setItem("token", userInfo.token);
+      //   this.setState({
+      //     loggedIn: !this.state.loggedIn,
+      //     user: userInfo.user,
+      //   });
+      // });
       .then((userInfo) => {
-        localStorage.setItem("token", userInfo.token);
-        this.setState({
-          loggedIn: !this.state.loggedIn,
-          user: userInfo.user,
-        });
+        if (userInfo.error) {
+          this.setState({
+            error: userInfo.error,
+          });
+        } else {
+          localStorage.setItem("token", userInfo.token);
+          this.setState({
+            loggedIn: !this.state.loggedIn,
+            user: userInfo.user,
+            error: {}
+          });
+        }
       });
   };
 
@@ -76,15 +91,16 @@ class App extends React.Component {
   render() {
     return (
       <>
-      
         <Header
           handleLogout={this.handleLogout}
           loggedIn={this.state.loggedIn}
-          
         />
         <main>
           <Container>
             <h1>Garden Planner</h1>
+            {this.state.error.length > 1 ? (
+              <h2>Something went wrong. Please try again.</h2>
+            ) : null}
             {this.state.loggedIn ? (
               <div>
                 <PlantContainer user={this.state.user} />
@@ -93,7 +109,7 @@ class App extends React.Component {
               </div>
             ) : (
               <div>
-                <SignUp />
+                <SignUp handleLogin={this.handleLogin} handleChange={this.handleChange}/>
                 <Login
                   handleLogin={this.handleLogin}
                   handleChange={this.handleChange}

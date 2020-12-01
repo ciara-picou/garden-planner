@@ -12,6 +12,7 @@ class SignUp extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+        this.props.handleChange(e)
     }
 
     signUp = (e) => {
@@ -34,10 +35,11 @@ class SignUp extends Component {
         //things work well enough when we replace it with // .then(console.log)
         .then((userInfo) => {
             localStorage.setItem("token", userInfo.token);
-            this.setState({
-              loggedIn: !this.state.loggedIn,
-              user: userInfo.user,
-            });
+            // this.setState({
+            //   loggedIn: !this.state.loggedIn,
+            //   user: userInfo.user,
+            // });
+            this.props.handleLogin()
           });
 
         e.target.reset()
