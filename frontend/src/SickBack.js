@@ -3,7 +3,8 @@ import { Form, Col, Button, Card, ListGroup } from "react-bootstrap";
 
 class SickBack extends Component {
   state = {
-    comments: [],
+    // comments: [],
+    comments: this.props.comments
   };
   renderComments = () => {
     if (this.props.comments) {
@@ -22,7 +23,8 @@ class SickBack extends Component {
     e.preventDefault();
     console.log(e.target)
     let content = e.target[0].value;
-    let username = e.target[1].value;
+    //let username = e.target[1].value;
+    let username = "username";
     
     console.log(content)
     console.log(username)
@@ -44,6 +46,9 @@ class SickBack extends Component {
     .then(newComment => this.setState({
         comments: [...this.state.comments, newComment]
     }))
+    // .then(newComment => console.log(newComment))
+    // console.log(this.state.comments)
+    e.target.reset()
   };
 
   render() {
@@ -51,11 +56,23 @@ class SickBack extends Component {
        <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Title>Comments:</Card.Title> 
-          {this.props.comments ? (
+          {/* {this.props.comments ? (
       this.props.comments.map((comment) => {
        return( <h5>
-          {comment.content}
+          {comment.content}-{comment.username}
           </h5>) 
+      
+      })) : null */}
+      {this.state.comments ? (
+      this.state.comments.map((comment) => {
+      //  return( <h5>
+      //     {comment.content}
+      //     </h5>) 
+        return( <ListGroup>
+          <ListGroup.Item>{comment.content}</ListGroup.Item>
+        </ListGroup>
+          
+          )
       
       })) : null
     
@@ -71,13 +88,13 @@ class SickBack extends Component {
                     placeholder="Leave a Comment"
                   />
                 </Form.Group>
-                <Form.Group controlId="post-comment">
+                {/* <Form.Group controlId="post-comment">
                   <Form.Control
                     size="lg"
                     type="content"
                     placeholder="Enter Your Username"
                   />
-                </Form.Group> 
+                </Form.Group>  */}
                 <Button variant="primary" type="submit" size="lg">
                   Post
                 </Button>{" "}

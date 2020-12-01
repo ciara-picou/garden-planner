@@ -103,7 +103,7 @@ import NewPlantForm from './NewPlantForm'
 
     })
     .then(res => this.setState({
-        allPlant: updatePlantList
+        allPlants: updatePlantList
     }))
 }
 
