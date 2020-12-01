@@ -17,6 +17,24 @@ class App extends React.Component {
     user: {},
   };
 
+  componentDidMount(){
+    if(localStorage.token){
+      fetch("http://localhost:3001/user", {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(res => res.json())
+    .then(userInfo => {
+      console.log(userInfo)
+      this.setState({
+        loggedIn: !this.state.loggedIn,
+        user: userInfo,
+      });
+    })
+    }
+  }
+
   handleChange = (e) => {
     //console.log(e.target.value)
     this.setState({

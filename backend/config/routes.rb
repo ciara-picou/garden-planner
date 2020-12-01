@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :comments
   resources :posts
   post "/login", to: "auth#create"
+  get "/user", to: "users#get_user"
 end
