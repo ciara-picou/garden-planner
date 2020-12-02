@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Container } from "react-bootstrap";
+import { Container, Modal, Button } from "react-bootstrap";
 import PlantContainer from "./PlantContainer";
 import DiscussionBoard from "./DiscussionBoard";
 import SickBack from "./SickBack";
 import Calendar from "./Calendar";
 import Login from "./Login";
 import SignUp from "./SignUp";
+// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class App extends React.Component {
   state = {
@@ -16,6 +17,7 @@ class App extends React.Component {
     loggedIn: false,
     user: {},
     error: {},
+    display: false,
   };
 
   componentDidMount() {
@@ -65,10 +67,18 @@ class App extends React.Component {
           this.setState({
             loggedIn: !this.state.loggedIn,
             user: userInfo.user,
-            error: {}
+            error: {},
           });
         }
       });
+  };
+
+  handleClick = () => {
+    let newBoolean = !this.state.display;
+    console.log(this.props);
+    this.setState({
+      error: [1],
+    });
   };
 
   handleLogout = () => {
@@ -90,17 +100,56 @@ class App extends React.Component {
           <Container>
             <h1>Garden Planner</h1>
             {this.state.error.length > 1 ? (
-              <h2>Something went wrong. Please try again.</h2>
+              <Modal.Dialog>
+                <Modal.Header closeButton>
+                  <Modal.Title>Invalid Username or Password!</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <p>
+                    Please carefully re-enter your information and try again.
+                  </p>
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button onClick={this.handleClick} variant="secondary">
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal.Dialog>
             ) : null}
             {this.state.loggedIn ? (
               <div>
                 <PlantContainer user={this.state.user} />
                 <Calendar />
                 <DiscussionBoard userId={this.state.user.id} />
+                {/* <Router>
+                  <Switch>
+                    <Route
+                      path="/sick-plant-gallery"
+                      render={(routerProps) => (
+                        <DiscussionBoard
+                          {...routerProps}
+                          userId={this.state.user.id}
+                        />
+                      )}
+                    /> */}
+                    {/* <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route exact path="/" component={()=> <Home/> }/>
+        <Route  path="/plants" render={(routerProps) => <PlantCard plant={plant}/>}/>
+        <Route  path="/discussion-board" component={DiscussionBoard}/>
+        <Route  path="/calendar" component={Calendar}/>
+        <Route  component={NoMatch}/> */}
+                  {/* </Switch>
+                </Router> */}
               </div>
             ) : (
               <div>
-                <SignUp handleLogin={this.handleLogin} handleChange={this.handleChange}/>
+                <SignUp
+                  handleLogin={this.handleLogin}
+                  handleChange={this.handleChange}
+                />
                 <Login
                   handleLogin={this.handleLogin}
                   handleChange={this.handleChange}

@@ -3,7 +3,7 @@ import {Card, ListGroup, Button, Form} from 'react-bootstrap';
  const Back = (props) => {
   return(
     
-    <Card style={{ width: '18rem' }}>
+    <Card className="card-back" style={{ width: '18rem' }}>
         <Card.Img variant="top" src={null} />
         <Card.Body>
             <Card.Title>{props.plant.name} Care</Card.Title>

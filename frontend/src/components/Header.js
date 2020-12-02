@@ -1,6 +1,7 @@
 import React from 'react'
 import {Navbar, Nav, Button, Container} from 'react-bootstrap';
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+// import DiscussionBoard from '../DiscussionBoard'
 
 
 const Header = (props) => {
@@ -20,20 +21,11 @@ const Header = (props) => {
       <Nav.Link href="#link">Link</Nav.Link>
     </Nav> */}
   </Navbar.Collapse>
+  {/* <Button href="/sick-plant-gallery" variant="secondary">Sick Plant Gallery</Button> */}
   {props.loggedIn ? <Button onClick={handleClick}variant="secondary">Logout</Button> : null}
 </Navbar>
 
-    {/* <Router>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route exact path="/" component={()=> <Home/> }/>
-        <Route  path="/plants" render={(routerProps) => <PlantCard plant={plant}/>}/>
-        <Route  path="/discussion-board" component={DiscussionBoard}/>
-        <Route  path="/calendar" component={Calendar}/>
-        <Route  component={NoMatch}/>
-   </Switch>
-  </Router> */}
+    
         </header>
     )
 }

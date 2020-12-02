@@ -17,7 +17,7 @@ class SickPlantForm extends Component {
                 placeholder="Upload a photo"
               />
             </Form.Group>
-
+            
             <Form.Group controlId="post-sick-plant">
               <Form.Control
                 size="lg"

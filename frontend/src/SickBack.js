@@ -69,7 +69,7 @@ class SickBack extends Component {
                 );
               })
             : null}
-
+            <br></br>
           {/* {this.props.comments
             ? this.props.comments.map((comment) => {
                 return (

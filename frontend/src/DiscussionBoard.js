@@ -60,7 +60,8 @@ import { Button } from 'react-bootstrap';
         })
         .then(res => res.json())
         .then(newPost => this.setState({
-            posts: [...this.state.posts, newPost]
+            // posts: [...this.state.posts, newPost]
+             posts: [newPost, ...this.state.posts]
         }))
         e.target.reset()
   }
@@ -72,10 +73,11 @@ import { Button } from 'react-bootstrap';
           <h4>Is your plant looking a little worse for the wear? <br></br>
             The Garden Planner community can help you identify  <br></br>
             the problem and get your plant on the road to recovery.<br></br>
-            
-           
           </h4>
+          <br></br>
           <Button onClick={this.handleClick} variant="primary" size="lg">Post Your Sick Plant Here</Button>{' '}
+          <br></br>
+          <br></br>
          {this.state.isClicked ? <SickPlantForm createPost={this.createPost}/> : null}
          {this.state.posts.map(post => {
             return <SickPlantCard post={post} key={post.id}/>

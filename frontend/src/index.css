@@ -15,3 +15,7 @@ background: url('./img.jpg') no-repeat fixed center center/cover;
   margin-bottom: 20px;
 }
 
+.card-back{
+  margin-left: 60px;
+}
+

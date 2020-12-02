@@ -148,6 +148,8 @@ class PlantContainer extends Component {
         <Button onClick={this.createPlant} variant="primary" size="lg">
           Add a Plant to My Garden
         </Button>{" "}
+        <br></br>
+        <br></br>
         {this.state.display ? <NewPlantForm newPlant={this.newPlant} /> : null}
         <br></br>
         <br></br>
