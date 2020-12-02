@@ -64,6 +64,7 @@ import { Card, Button, Col} from 'react-bootstrap';
             posts: [...this.state.posts, newPost]
         }))
         //  .then(newPost => console.log(newPost))
+        e.target.reset()
   }
   
   render() {

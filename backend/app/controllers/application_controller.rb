@@ -7,13 +7,13 @@ before_action :logged_in?
     end
 
     def logged_in?
-         #byebug
+        #  byebug
           headers = request.headers["Authorization"] 
           token = headers.split(" ")[1]
           begin
           user_id = JWT.decode(token, "se082420")[0]["user_id"]
-           
-          user= User.find(user_id)
+        #    byebug
+          return user= User.find(user_id)
         
         rescue # if you don't specify what kind of error you are looking for, it will catch any type of error
            user =  nil

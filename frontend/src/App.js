@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Container } from "react-bootstrap";
+import { Container, Jumbotron } from "react-bootstrap";
 import PlantContainer from "./PlantContainer";
 import DiscussionBoard from "./DiscussionBoard";
 import SickBack from "./SickBack";
@@ -16,6 +16,24 @@ class App extends React.Component {
     loggedIn: false,
     user: {},
   };
+
+  componentDidMount(){
+    if(localStorage.token){
+      fetch("http://localhost:3001/user", {
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      },
+    })
+    .then(res => res.json())
+    .then(userInfo => {
+      console.log(userInfo)
+      this.setState({
+        loggedIn: !this.state.loggedIn,
+        user: userInfo,
+      });
+    })
+    }
+  }
 
   handleChange = (e) => {
     //console.log(e.target.value)
@@ -47,18 +65,23 @@ class App extends React.Component {
       });
   };
 
-  handleLogout=()=>{
+  handleLogout = () => {
     this.setState({
-      user:{},
-      loggedIn:false
-    })
-    localStorage.clear()
-  }
+      user: {},
+      loggedIn: false,
+    });
+    localStorage.clear();
+  };
 
   render() {
     return (
       <>
-        <Header handleLogout={this.handleLogout} loggedIn={this.state.loggedIn}/>
+      
+        <Header
+          handleLogout={this.handleLogout}
+          loggedIn={this.state.loggedIn}
+          
+        />
         <main>
           <Container>
             <h1>Garden Planner</h1>
@@ -66,7 +89,7 @@ class App extends React.Component {
               <div>
                 <PlantContainer user={this.state.user} />
                 <Calendar />
-                <DiscussionBoard userId={this.state.user.id}/>
+                <DiscussionBoard userId={this.state.user.id} />
               </div>
             ) : (
               <div>
@@ -74,7 +97,6 @@ class App extends React.Component {
                 <Login
                   handleLogin={this.handleLogin}
                   handleChange={this.handleChange}
-                  
                 />
               </div>
             )}

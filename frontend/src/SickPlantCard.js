@@ -3,6 +3,7 @@
 
 import React, { Component } from 'react';
 import SickFront from './SickFront'
+import SickBack from './SickBack'
 
 
 class SickPlantCard extends Component {
@@ -12,7 +13,7 @@ class SickPlantCard extends Component {
     return (
       
         <div>
-            <SickFront post={this.props.post} key={this.props.post.id}/>
+           <SickFront post={this.props.post} key={this.props.post.id}/> 
         </div>
      
     )

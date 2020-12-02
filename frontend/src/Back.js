@@ -6,12 +6,11 @@ import {Card, ListGroup, Button, Form} from 'react-bootstrap';
     <Card style={{ width: '18rem' }}>
         <Card.Img variant="top" src={null} />
         <Card.Body>
-            <Card.Title>{props.plant.name}</Card.Title>
+            <Card.Title>{props.plant.name} Care</Card.Title>
             <Card.Text>
                 
                 
                 <ListGroup>
-                    <ListGroup.Item>{props.plant.name} Care:</ListGroup.Item>
                     <ListGroup.Item>Water: {props.plant.water}</ListGroup.Item>
                     <ListGroup.Item>Light Requirements: {props.plant.light}</ListGroup.Item>
                     <ListGroup.Item>Cold Tolerance: {props.plant.cold_tolerance}</ListGroup.Item>

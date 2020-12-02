@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :logged_in?, only: [:create]
+    skip_before_action :logged_in?, only: [:create, :get_user]
     def index
         users= User.all
         render json: users, include: [ :plants, { posts: { include:  :comments }  } ]
@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     def destroy
         user = User.find(params[:id])
         user.destroy
+    end
+
+    def get_user
+        user = self.logged_in?
+        # byebug
+        render json: user, include: [ :plants, { posts: { include:  :comments }  } ]
     end
     
     private
