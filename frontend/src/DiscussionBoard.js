@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import SickPlantForm from './SickPlantForm.js';
 import SickPlantCard from './SickPlantCard.js';
-import { Card, Button, Col} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
-//  export class PlantContainer extends Component {
+
   class DiscussionBoard extends Component {
 
   state={
@@ -25,7 +25,7 @@ import { Card, Button, Col} from 'react-bootstrap';
         posts: posts
       })
     })
-    // .then(console.log)
+    
 
   }
   
@@ -43,8 +43,7 @@ import { Card, Button, Col} from 'react-bootstrap';
         let content = e.target[1].value
         let image = e.target[0].value
         let user_id = this.props.userId
-        //will eventually pass prop of state of user_id
-        // do i need to worry about user_id?
+
         fetch("http://localhost:3001/posts",{
             method: "POST",
             headers: {
@@ -61,9 +60,9 @@ import { Card, Button, Col} from 'react-bootstrap';
         })
         .then(res => res.json())
         .then(newPost => this.setState({
-            posts: [...this.state.posts, newPost]
+            // posts: [...this.state.posts, newPost]
+             posts: [newPost, ...this.state.posts]
         }))
-        //  .then(newPost => console.log(newPost))
         e.target.reset()
   }
   
@@ -74,10 +73,11 @@ import { Card, Button, Col} from 'react-bootstrap';
           <h4>Is your plant looking a little worse for the wear? <br></br>
             The Garden Planner community can help you identify  <br></br>
             the problem and get your plant on the road to recovery.<br></br>
-            
-           
           </h4>
+          <br></br>
           <Button onClick={this.handleClick} variant="primary" size="lg">Post Your Sick Plant Here</Button>{' '}
+          <br></br>
+          <br></br>
          {this.state.isClicked ? <SickPlantForm createPost={this.createPost}/> : null}
          {this.state.posts.map(post => {
             return <SickPlantCard post={post} key={post.id}/>

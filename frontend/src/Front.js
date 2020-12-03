@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import Back from "./Back";
 import { Card, Button, Row, Col } from "react-bootstrap";
-//  const Front = (props) => {
+
 class Front extends Component {
   state = {
     display: false,
@@ -54,7 +54,7 @@ class Front extends Component {
     );
   }
 }
-
+//sample plant object:
 // "id": 1,
 // "name": "Geranium",
 // "pimage": ""
