@@ -1,4 +1,4 @@
-// import React from 'react';
+
 import React, { Component } from "react";
 import Back from "./Back";
 import { Card, Button, Row, Col } from "react-bootstrap";

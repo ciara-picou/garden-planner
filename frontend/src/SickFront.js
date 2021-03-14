@@ -25,12 +25,6 @@ class SickFront extends Component {
           <Button onClick={this.handleClick} variant="primary" size="lg">
             View Community Feedback
           </Button>{" "}
-          {/* {this.state.display ? (
-            <SickBack
-              comments={this.props.post.comments}
-              post={this.props.post}
-            />
-          ) : null} */}
         </Card.Body>
       </Card>
       </Col>

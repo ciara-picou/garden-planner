@@ -1,7 +1,5 @@
 
 import React, { Component } from "react";
-import {Form, Card, Button, Col} from 'react-bootstrap';
-import PlantContainer from './PlantContainer'
 import PlantCard from './PlantCard'
 class Login extends Component {
 

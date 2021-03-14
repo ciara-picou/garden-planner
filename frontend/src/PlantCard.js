@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Front from "./Front";
-import Back from "./Back";
+
 
 class PlantCard extends Component {
   state = {

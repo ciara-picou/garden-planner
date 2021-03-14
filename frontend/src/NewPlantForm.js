@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Card, Button, Col } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 
 class NewPlantForm extends Component {
   render() {
@@ -54,6 +54,7 @@ class NewPlantForm extends Component {
 }
 
 export default NewPlantForm;
+//plant columns
 // plant schema:
 // t.string "name"
 // t.string "pimage"
