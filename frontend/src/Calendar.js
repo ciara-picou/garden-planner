@@ -1,8 +1,6 @@
-// import React from 'react';
+
 import React, { Component } from "react";
 import ApiCalendar from "react-google-calendar-api";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import { Container, Button, Form, Col } from "react-bootstrap";
 
 

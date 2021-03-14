@@ -4,7 +4,6 @@ import { Form, Col, Button, Card, ListGroup } from "react-bootstrap";
 class SickBack extends Component {
   state = {
     comments: this.props.comments,
-    //comments: []
   };
   renderComments = () => {
     if (this.props.comments) {
@@ -21,9 +20,6 @@ class SickBack extends Component {
     // to appease my strong params.
     let username = "username";
 
-    console.log(content);
-    console.log(username);
-    console.log(postId);
     fetch("http://localhost:3001/comments", {
       method: "POST",
       headers: {
@@ -42,7 +38,6 @@ class SickBack extends Component {
         if (this.state.comments) {
           this.setState({
             comments: [...this.state.comments, newComment],
-            //  comments: [...this.props.comments, newComment],
           });
         } else {
           this.setState({
@@ -70,16 +65,7 @@ class SickBack extends Component {
               })
             : null}
             <br></br>
-          {/* {this.props.comments
-            ? this.props.comments.map((comment) => {
-                return (
-                  <ListGroup>
-                    <ListGroup.Item>{comment.content}</ListGroup.Item>
-                  </ListGroup>
-                );
-              })
-            : null} */}
-
+        
           <Form onSubmit={(e) => this.postComment(e, this.props.post.id)}>
             <Form.Row className="align-items-center">
               <Col xs="auto">

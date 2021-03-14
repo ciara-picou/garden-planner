@@ -8,7 +8,7 @@ import SickBack from "./SickBack";
 import Calendar from "./Calendar";
 import Login from "./Login";
 import SignUp from "./SignUp";
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+
 
 class App extends React.Component {
   state = {
@@ -29,7 +29,6 @@ class App extends React.Component {
       })
         .then((res) => res.json())
         .then((userInfo) => {
-          console.log(userInfo);
           this.setState({
             loggedIn: !this.state.loggedIn,
             user: userInfo,
@@ -39,7 +38,6 @@ class App extends React.Component {
   }
 
   handleChange = (e) => {
-    //console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -123,26 +121,6 @@ class App extends React.Component {
                 <PlantContainer user={this.state.user} />
                 <Calendar />
                 <DiscussionBoard userId={this.state.user.id} />
-                {/* <Router>
-                  <Switch>
-                    <Route
-                      path="/sick-plant-gallery"
-                      render={(routerProps) => (
-                        <DiscussionBoard
-                          {...routerProps}
-                          userId={this.state.user.id}
-                        />
-                      )}
-                    /> */}
-                    {/* <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route exact path="/" component={()=> <Home/> }/>
-        <Route  path="/plants" render={(routerProps) => <PlantCard plant={plant}/>}/>
-        <Route  path="/discussion-board" component={DiscussionBoard}/>
-        <Route  path="/calendar" component={Calendar}/>
-        <Route  component={NoMatch}/> */}
-                  {/* </Switch>
-                </Router> */}
               </div>
             ) : (
               <div>
