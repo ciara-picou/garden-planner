@@ -1,45 +1,44 @@
-
 import React, { Component } from "react";
 import ApiCalendar from "react-google-calendar-api";
 import { Container, Button, Form, Col } from "react-bootstrap";
 
-
 class Calendar extends Component {
-
-  state={
+  state = {
     eventSummary: "",
-    eventDate: ""
-
-  }
-
-  setEventSummary=(e)=>{
+    eventDate: "",
+  };
+  //changes state according to user input
+  setEventSummary = (e) => {
     this.setState({
-      eventSummary: e.target.value
-    })
-  }
-  setEventDate=(e)=>{
+      eventSummary: e.target.value,
+    });
+  };
+  setEventDate = (e) => {
     this.setState({
-      eventDate: e.target.value
-    })
-  }
+      eventDate: e.target.value,
+    });
+  };
 
+  //logs user in to their google account
   handleClick = () => {
     ApiCalendar.handleAuthClick();
   };
 
-  createEvent = (e) => {
+  createEvent = () => {
     var gapi = window.gapi;
     let theEvent = {
-       'summary': this.state.eventSummary,
+      summary: this.state.eventSummary,
 
       start: {
-         'date': this.state.eventDate
+        date: this.state.eventDate,
       },
       end: {
-         'date': this.state.eventDate
+        date: this.state.eventDate,
       },
     };
     let calendarId = "primary";
+
+    //we have access to createEvent function via the react-google-calendar-api-gem
     //ApiCalendar.createEvent(event: object, calendarId: string = this.calendar)
     ApiCalendar.createEvent(theEvent, calendarId);
 
@@ -47,11 +46,10 @@ class Calendar extends Component {
       calendarId: "primary",
       resource: theEvent,
     });
-
+    //opens the user's google calendar in a new tab featuring the newly created event
     request.execute((event) => {
       window.open(event.htmlLink);
     });
-
   };
 
   render() {
@@ -60,42 +58,45 @@ class Calendar extends Component {
         <Container>
           <h1>Add plant care reminders to</h1>
           <h1>your Google Calendar!</h1>
-          <br></br>
-          <br></br>
+
           <h4>First:</h4>
-          <Button style={{ width: 100, height: 50 }} onClick={this.handleClick}>
+          <Button
+            className="mb-3"
+            style={{ width: 100, height: 50 }}
+            onClick={this.handleClick}
+          >
             Sign in
           </Button>
-          <br></br>
-          <br></br>
+
           <h4>Then:</h4>
           <Form>
             <Form.Row>
               <Col xs="auto">
                 <Form.Control
-                  onChange={(e)=>this.setEventSummary(e)}
+                  onChange={(e) => this.setEventSummary(e)}
                   placeholder="Plant Care Event Name"
                 />
               </Col>
               <Col xs="auto">
                 <Form.Control
-                  onChange={(e)=>this.setEventDate(e)}
+                  onChange={(e) => this.setEventDate(e)}
                   type="date"
                   placeholder="yyyy/mm/dd"
                 />
               </Col>
             </Form.Row>
           </Form>
-          <Button style={{ width: 100, height: 50 }} onClick={this.createEvent}>
+          <Button
+            className="mb-5"
+            style={{ width: 100, height: 50 }}
+            onClick={this.createEvent}
+          >
             Add an Event
           </Button>
-          <br></br>
-          <br></br>
         </Container>
       </>
     );
   }
 }
-
 
 export default Calendar;
